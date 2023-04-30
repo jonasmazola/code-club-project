@@ -13,11 +13,15 @@ class SessionController {
         })
 
         const userEmailIncorrect = () => {
-            return response.status(400).json({ error: 'Senha ou email invalidos, tente novamente!' })
+            
+            return response.status(400)
+         
         }
+        
 
         if (!(await schema.isValid(request.body))) {
             userEmailIncorrect()
+          
         }
 
         const { email, password } = request.body
@@ -28,11 +32,15 @@ class SessionController {
 
         if (!user) {
             userEmailIncorrect()
+          
         }
 
         if (!(await user.checkPassword(password))) {
             userEmailIncorrect()
+         
         }
+
+        
 
         return response.json(
             {

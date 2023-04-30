@@ -10,6 +10,8 @@ import ProductController from "./app/controllers/ProductController"
 import authMiddleware from './app/middlewares/auth'
 import CategoriaController from "./app/controllers/CategoriaController"
 import OrderController from "./app/controllers/OrderController"
+import OrdemController from "./app/controllers/OrdemController"
+
 
 const upload = multer(multerConfig)
 
@@ -30,10 +32,13 @@ routes.post('/categorias', upload.single('file'), CategoriaController.store)
 routes.put('/categorias/:id', upload.single('file'), CategoriaController.update)
 
 
-routes.post('/orders', OrderController.store)
 routes.get('/orders', OrderController.index)
+routes.post('/orders', OrderController.store)
 routes.put('/orders/:id', OrderController.update)
 
+routes.get('/ordem', OrdemController.index)
+routes.post('/ordem',upload.single('file'), OrdemController.store)
+routes.put('/ordem/:id',upload.single('file'), OrdemController.update)
 
 export default routes
 
