@@ -13,12 +13,15 @@ class OrdemController {
                 Yup.object().shape({
                     id: Yup.number().required(),
                     quantity: Yup.number().required(),
+                    name_produto: Yup.string().required(),
+                    id_categoria: Yup.string().required(),
+                    path: Yup.string().required(),
+                    price: Yup.string().required(),
                 })
             ),
 
 
         })
-
 
         try {
             await schema.validateSync(request.body, {
@@ -30,7 +33,8 @@ class OrdemController {
 
 
 
-        
+        const nomeUsuario = request.userName
+        const idUsuario = request.userId
         
         // recuperando o ultimo ID
         const ultimoidSalvo = await Ordem.findAll({
@@ -39,17 +43,22 @@ class OrdemController {
           });
           
           const ultimoId = ultimoidSalvo.length > 0 ? ultimoidSalvo[0].id : null;
-        console.log(ultimoId)
 
 
         // segunda tentativa de domingo funcionando
-     
             const array = request.body.products;
             array.forEach(products => {
                 Ordem.create({
                     id_produto: products.id,
                     quantidade: products.quantity,
-                    id_pedido: ultimoId+1
+                    name_produto: products.name_produto,
+                    id_categoria: products.id_categoria,
+                    path: products.path,
+                    price: products.price,
+                    id_pedido: ultimoId+1,
+                    id_usuario: idUsuario,
+                    name_usuario: nomeUsuario
+
                 }).then(() => {
                     console.log('Elemento salvo com sucesso!');
                 }).catch(err => {
@@ -59,29 +68,6 @@ class OrdemController {
 
             response.send('Array recebido e salvando no banco de dados...');
         
-        console.log(array)
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-        // const ordem = await Ordem.create({
-        //     products: {
-        //         id: request.body.products,
-        //         quantidade: request.body.products
-        //     }
-        // })
-
-        // return response.status(201).json(ordem)
 
 
 
