@@ -9,7 +9,6 @@ import SessionController from "./app/controllers/SessionController"
 import ProductController from "./app/controllers/ProductController"
 import authMiddleware from './app/middlewares/auth'
 import CategoriaController from "./app/controllers/CategoriaController"
-import OrderController from "./app/controllers/OrderController"
 import OrdemController from "./app/controllers/OrdemController"
 
 
@@ -30,11 +29,6 @@ routes.put('/products/:id', upload.single('file'), ProductController.update)
 routes.get('/categorias', CategoriaController.index)
 routes.post('/categorias', upload.single('file'), CategoriaController.store)
 routes.put('/categorias/:id', upload.single('file'), CategoriaController.update)
-
-
-routes.get('/orders', OrderController.index)
-routes.post('/orders', OrderController.store)
-routes.put('/orders/:id', OrderController.update)
 
 routes.get('/ordem', OrdemController.index)
 routes.post('/ordem',upload.single('file'), OrdemController.store)

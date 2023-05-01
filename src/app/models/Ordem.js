@@ -10,6 +10,7 @@ class Ordem extends Model {
             id_produto: Sequelize.STRING,
             name_produto: Sequelize.STRING,
             price: Sequelize.INTEGER,
+            status: Sequelize.STRING,
             id_categoria: Sequelize.INTEGER,
             quantidade: Sequelize.INTEGER,
             path: Sequelize.STRING,

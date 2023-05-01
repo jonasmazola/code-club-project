@@ -3,7 +3,6 @@ import Ordem from '../models/Ordem'
 import Produto from '../models/Products'
 import Categoria from '../models/Categoria'
 import Usuario from '../models/User'
-import { sequelize } from 'sequelize'
 
 class OrdemController {
 
@@ -88,7 +87,7 @@ class OrdemController {
                 {
                     model: Produto,
                     as: 'produto',
-                    attributes: ['id', 'name']
+                    attributes: ['id', 'name','price']
                 },
 
                 {
