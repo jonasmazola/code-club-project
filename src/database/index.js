@@ -4,9 +4,10 @@ import configDataBase from '../config/database'
 import Product from '../app/models/Products'
 import Categoria from '../app/models/Categoria'
 import Ordem from '../app/models/Ordem'
+import NovoPedido from '../app/models/NovoPedido'
 
 
-const models = [User, Product, Categoria, Ordem]
+const models = [User, Product, Categoria, Ordem, NovoPedido]
 
 class Database {
     constructor() {

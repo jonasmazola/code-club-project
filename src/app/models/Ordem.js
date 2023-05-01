@@ -49,6 +49,12 @@ class Ordem extends Model {
             as: 'categoria'
         })
 
+        this.belongsTo(models.NovoPedido, {
+            foreignKey: 'id',
+            as: 'novoPedido'
+        })
+
+
     }
 
 
