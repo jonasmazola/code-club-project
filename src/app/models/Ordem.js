@@ -4,13 +4,10 @@ import Sequelize, { Model } from "sequelize";
 class Ordem extends Model {
     static init(sequelize) {
         super.init({
-            id_usuario: Sequelize.STRING,
-            name_usuario: Sequelize.STRING,
             id_pedido: Sequelize.INTEGER,
             id_produto: Sequelize.STRING,
             name_produto: Sequelize.STRING,
             price: Sequelize.INTEGER,
-            status: Sequelize.STRING,
             id_categoria: Sequelize.INTEGER,
             quantidade: Sequelize.INTEGER,
             path: Sequelize.STRING,

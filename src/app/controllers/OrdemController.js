@@ -3,6 +3,7 @@ import Ordem from '../models/Ordem'
 import Produto from '../models/Products'
 import Categoria from '../models/Categoria'
 import Usuario from '../models/User'
+import NovoPedido from '../models/NovoPedido'
 
 class OrdemController {
 
@@ -30,13 +31,17 @@ class OrdemController {
             return response.status(400).json({ error: err.errors })
         }
 
-
-
         const nomeUsuario = request.userName
         const idUsuario = request.userId
+
+        NovoPedido.create({
+            id_usuario: idUsuario,
+            name_usuario: nomeUsuario
+        })
+
         
         // recuperando o ultimo ID
-        const ultimoidSalvo = await Ordem.findAll({
+        const ultimoidSalvo = await NovoPedido.findAll({
             order: [['id', 'DESC']],
             limit: 1
           });
@@ -46,7 +51,7 @@ class OrdemController {
 
         // segunda tentativa de domingo funcionando
             const array = request.body.products;
-            array.forEach(products => {
+          await array.forEach(products => {
                 Ordem.create({
                     id_produto: products.id,
                     quantidade: products.quantity,
@@ -55,7 +60,6 @@ class OrdemController {
                     path: products.path,
                     price: products.price,
                     id_pedido: ultimoId+1,
-                    id_usuario: idUsuario,
                     name_usuario: nomeUsuario
 
                 }).then(() => {

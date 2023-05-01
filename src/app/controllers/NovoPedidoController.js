@@ -1,5 +1,6 @@
 import * as Yup from 'yup'
 import Ordem from '../models/Ordem'
+import User from '../models/User'
 import Produto from '../models/Products'
 import Categoria from '../models/Categoria'
 import Usuario from '../models/User'
@@ -15,7 +16,13 @@ class NovoPedidoController {
                 {
                     model: Ordem,
                     as: 'products',
-                    attributes: ['id', 'id_pedido', 'name_usuario', 'name_produto', 'price', 'quantidade', 'id_categoria', 'path' ]
+                    attributes: ['id', 'id_pedido', 'name_produto', 'price', 'quantidade', 'id_categoria', 'path' ]
+                },
+
+                {
+                    model: User,
+                    as: 'usuario',
+                    attributes: ['id', 'name']
                 },
 
                 
